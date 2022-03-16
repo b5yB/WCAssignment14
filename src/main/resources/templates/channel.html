@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<title th:text="${channel.title}"></title>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+                let channelId = [[${channel.channelId}]];
+                sessionStorage.setItem('channelId', channelId);
+                console.log(channelId);
+            /*]]>*/
+        </script>
+	</head>
+	<body>
+        <div class="messageBox">
+            <div th:each = "message : ${messages}" th:inline="text">
+                <span id="messageName">[[${message.user.name}]]: </span>
+                <span id="messageContent" th:text="${message.content}"></span>
+            </div>
+        </div>
+        <div class="textBox">
+            <textarea id="textBox"></textarea>
+        </div>
+		<script type="text/javascript" src="/channel.js"></script>
+	</body>
+</html>
